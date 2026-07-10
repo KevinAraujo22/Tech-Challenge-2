@@ -119,7 +119,7 @@ O desenvolvimento seguiu uma abordagem incremental, construindo camada por camad
 
 - **Containerização:** A aplicação e o banco de dados sobem juntos via `docker-compose`, comunicando-se pela rede interna do Docker. O MongoDB é acessado pelo hostname `mongo`, sem exposição desnecessária de IPs.
 
-- **CI/CD:** O workflow do GitHub Actions sobe um container MongoDB temporário e executa todos os testes automaticamente a cada push ou pull request na branch `main`.
+- **CI/CD:** O workflow do GitHub Actions é composto por dois jobs. O primeiro (**CI**) sobe um container MongoDB temporário e executa todos os testes automaticamente a cada push ou pull request na branch `main`. O segundo (**CD**) só é disparado após os testes passarem e realiza o deploy automático da aplicação na plataforma **Railway**, tornando a API acessível publicamente na internet.
 
 ---
 
