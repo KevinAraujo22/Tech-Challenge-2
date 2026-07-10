@@ -1,5 +1,8 @@
 import { Request, Response } from 'express';
+import mongoose from 'mongoose';
 import Post from '../models/Post';
+
+const isValidId = (id: string | string[]) => mongoose.Types.ObjectId.isValid(id as string);
 
 export const listPosts = async (_req: Request, res: Response) => {
   const posts = await Post.find().sort({ createdAt: -1 });
@@ -7,6 +10,9 @@ export const listPosts = async (_req: Request, res: Response) => {
 };
 
 export const getPostById = async (req: Request, res: Response) => {
+  if (!isValidId(req.params.id))
+    return res.status(404).json({ message: 'Post não encontrado' });
+
   const post = await Post.findById(req.params.id);
   if (!post) return res.status(404).json({ message: 'Post não encontrado' });
   res.json(post);
@@ -22,12 +28,18 @@ export const createPost = async (req: Request, res: Response) => {
 };
 
 export const updatePost = async (req: Request, res: Response) => {
+  if (!isValidId(req.params.id))
+    return res.status(404).json({ message: 'Post não encontrado' });
+
   const post = await Post.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
   if (!post) return res.status(404).json({ message: 'Post não encontrado' });
   res.json(post);
 };
 
 export const deletePost = async (req: Request, res: Response) => {
+  if (!isValidId(req.params.id))
+    return res.status(404).json({ message: 'Post não encontrado' });
+
   const post = await Post.findByIdAndDelete(req.params.id);
   if (!post) return res.status(404).json({ message: 'Post não encontrado' });
   res.status(204).send();
