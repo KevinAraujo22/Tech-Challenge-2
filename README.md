@@ -179,3 +179,7 @@ Os testes utilizam **Jest** + **Supertest** e cobrem todos os endpoints da API. 
 - **Ordem das rotas no Express:** A rota `GET /posts/search` inicialmente estava posicionada após `GET /posts/:id`, fazendo o Express capturar `"search"` como um ID e retornar 404. Mover a rota de busca para antes da rota de ID resolveu o problema completamente.
 
 - **Porta em uso no Docker:** Ao tentar subir os containers, a porta 3000 já estava alocada por outro processo. A solução foi ajustar o `docker-compose.yml` para mapear a porta externa `3001` para a porta interna `3000` da aplicação.
+
+## 9.Vídeo de demonstração do projeto
+
+- https://www.youtube.com/watch?v=HcAdyfyTh4c
