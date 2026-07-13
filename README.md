@@ -4,7 +4,6 @@
 
 - Davi Baestero Silva - RM: 371248
 - Kevin da Silva Araujo - RM: 372533
-- Leonardo Hisao Watanabe Silva - RM: 374063
 - Lucas Henrique Klein Esteves - RM: 374025
 - Lucas Dias Morosini - RM: 372641
 
